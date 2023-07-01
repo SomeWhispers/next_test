@@ -30,7 +30,7 @@ const IndexPage: NextPage<Props> = ({initialImageUrl}) => {
                     padding: "4px 8px",
                     }}
                 >
-                    きょうのにゃんこ
+                    きょうのにゃんこ🐈
             </button>
             <div className={styles.frame}>
                 {loading || <img src={imageUrl} className={styles.img}/>}
