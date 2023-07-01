@@ -1,13 +1,28 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import { NextPage } from "next";
+import { type } from "os";
+import { useEffect, useState } from "react";
+ 
+const IndexPage: NextPage = () => {
+    const [imageUrl, setUmageUrl] = useState("");
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        fetchImage().then((newImage) =>{
+        setImageUrl(newImage.url);
+        setLoading(false);
+        });
+    },[]);
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-  </Layout>
-)
+    return <div>{loading || <img src={imageUrl} />}</div>;
+};
+export default IndexPage;
 
-export default IndexPage
+type Image = {
+    url: string;
+};
+
+const fetchImage = async (): Promise<Image> => {
+    const res = await fetch("https://api.thecatapi.com/v1/images/search");
+    const images = await res.json();
+    console.log(images);
+    return images[0];
+  };
