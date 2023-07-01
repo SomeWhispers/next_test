@@ -3,7 +3,7 @@ import { type } from "os";
 import { useEffect, useState } from "react";
  
 const IndexPage: NextPage = () => {
-    const [imageUrl, setUmageUrl] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetchImage().then((newImage) =>{
